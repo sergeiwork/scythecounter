@@ -3,40 +3,61 @@ export class PlayerFaction {
   public color: string = "";
   public emblemUrl: string = "";
 
+  public static getByName(name: string): PlayerFaction {
+    switch (name?.toLowerCase()) {
+      case "polania":
+        return PlayerFaction.Polania;
+      case "saxony":
+        return PlayerFaction.Saxony;
+      case "crimea":
+        return PlayerFaction.Crimea;
+      case "nord":
+        return PlayerFaction.Nord;
+      case "rusvet":
+        return PlayerFaction.Rusvet;
+      case "albion":
+        return PlayerFaction.Albion;
+      case "togawa":
+        return PlayerFaction.Togawa;
+      default:
+        return PlayerFaction.Polania;
+    }
+  }
+
   public static Polania: PlayerFaction = {
     name: "Republic of Polania",
     color: "white",
-    emblemUrl: "",
+    emblemUrl: "/icons/factions/polania.png",
   };
   public static Saxony: PlayerFaction = {
     name: "Saxony Empire",
     color: "black",
-    emblemUrl: "",
+    emblemUrl: "/icons/factions/saxony.png",
   };
   public static Crimea: PlayerFaction = {
     name: "Crimean Khanate",
     color: "yellow",
-    emblemUrl: "",
+    emblemUrl: "/icons/factions/crimea.png",
   };
   public static Nord: PlayerFaction = {
     name: "Nordic Kingdoms",
     color: "blue",
-    emblemUrl: "",
+    emblemUrl: "/icons/factions/nord.png",
   };
   public static Rusvet: PlayerFaction = {
     name: "Rusviet Union",
     color: "red",
-    emblemUrl: "",
+    emblemUrl: "/icons/factions/rusvet.png",
   };
   public static Albion: PlayerFaction = {
     name: "Clan Albion",
     color: "green",
-    emblemUrl: "",
+    emblemUrl: "/icons/factions/albion.png",
   };
   public static Togawa: PlayerFaction = {
     name: "Togawa Shogunate",
     color: "purple",
-    emblemUrl: "",
+    emblemUrl: "/icons/factions/togawa.png",
   };
 
   private constructor() {}
@@ -53,16 +74,16 @@ export class Player {
   public name: string = "";
   public faction: PlayerFaction = PlayerFaction.Polania;
 
-  public constructor(other: Player | null) {
+  public constructor(other: any) {
     if (other) {
-      this.popularity = other.popularity;
-      this.money = other.money;
-      this.stars = other.stars;
-      this.hex = other.hex;
-      this.resources = other.resources;
-      this.bonus = other.bonus;
-      this.name = other.name;
-      this.faction = other.faction;
+      this.popularity = other.popularity ?? 0;
+      this.money = other.money ?? 0;
+      this.stars = other.stars ?? 0;
+      this.hex = other.hex ?? 0;
+      this.resources = other.resources ?? 0;
+      this.bonus = other.bonus ?? 0;
+      this.name = other.name ?? "";
+      this.faction = other.faction ?? PlayerFaction.Polania;
     }
   }
 

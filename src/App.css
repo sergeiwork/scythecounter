@@ -1,18 +1,41 @@
-.App > form {
+#root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.contentContainer {
+  max-width: 40vw;
+  min-width: 40vw;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+@media only screen and (max-width: 600px) {
+  .contentContainer {
+    min-width: 80vw;
+    max-width: 80vw;
+  }
+}
+.PlayerScoreCounter > form {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  max-width: 100%;
+  min-width: 100%;
 }
 .valueRow {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  min-width: 40vw;
-  max-width: 40vw;
+  max-width: 100%;
+  min-width: 100%;
 }
 .valueRow > img {
   min-width: 32px;
@@ -24,8 +47,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  min-width: 40vw;
-  max-width: 40vw;
 }
 .resultRow > input {
   color: tomato;
@@ -33,10 +54,13 @@
   font-size: 25px !important;
 }
 
-@media only screen and (max-width: 600px) {
-  .resultRow,
-  .valueRow {
-    min-width: 80vw;
-    max-width: 80vw;
-  }
+.factionRow {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.mra {
+  margin-right: auto;
 }
