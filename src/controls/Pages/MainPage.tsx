@@ -2,11 +2,17 @@ import * as React from "react";
 import { Button } from "react-materialize";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { LocalizationState } from "../../app/localizationStore";
 import { playersSlice } from "../../app/playersStore";
+import { RootState } from "../../app/store";
 import FactionSelect from "../FactionSelect";
 
-class MainPage extends React.Component<typeof playersSlice.actions> {
-  public constructor(props: typeof playersSlice.actions) {
+type MainPageProps = typeof playersSlice.actions & {
+  localization: LocalizationState;
+};
+
+class MainPage extends React.Component<MainPageProps> {
+  public constructor(props: MainPageProps) {
     super(props);
   }
   public render() {
@@ -29,10 +35,10 @@ class MainPage extends React.Component<typeof playersSlice.actions> {
               this.props.reset();
             }}
           >
-            Reset
+            {this.props.localization.strings.resetButton}
           </Button>
           <NavLink to="/summary" className="btn" style={{ marginLeft: "10px" }}>
-            Summary
+            {this.props.localization.strings.summaryButton}
           </NavLink>
         </div>
       </div>
@@ -40,4 +46,8 @@ class MainPage extends React.Component<typeof playersSlice.actions> {
   }
 }
 
-export default connect(null, playersSlice.actions)(MainPage as any);
+export default connect((state: RootState) => {
+  return {
+    localization: state.localization,
+  };
+}, playersSlice.actions)(MainPage as any);

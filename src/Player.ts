@@ -2,6 +2,7 @@ export class PlayerFaction {
   public name: string = "";
   public color: string = "";
   public emblemUrl: string = "";
+  public shortName: string = "";
 
   public static getByName(name: string): PlayerFaction {
     switch (name?.toLowerCase()) {
@@ -28,36 +29,43 @@ export class PlayerFaction {
     name: "Republic of Polania",
     color: "white",
     emblemUrl: "/icons/factions/polania.png",
+    shortName: "polania",
   };
   public static Saxony: PlayerFaction = {
     name: "Saxony Empire",
     color: "black",
     emblemUrl: "/icons/factions/saxony.png",
+    shortName: "saxony",
   };
   public static Crimea: PlayerFaction = {
     name: "Crimean Khanate",
     color: "yellow",
     emblemUrl: "/icons/factions/crimea.png",
+    shortName: "crimea",
   };
   public static Nord: PlayerFaction = {
     name: "Nordic Kingdoms",
     color: "blue",
     emblemUrl: "/icons/factions/nord.png",
+    shortName: "nord",
   };
   public static Rusvet: PlayerFaction = {
     name: "Rusviet Union",
     color: "red",
     emblemUrl: "/icons/factions/rusvet.png",
+    shortName: "rusvet",
   };
   public static Albion: PlayerFaction = {
     name: "Clan Albion",
     color: "green",
     emblemUrl: "/icons/factions/albion.png",
+    shortName: "albion",
   };
   public static Togawa: PlayerFaction = {
     name: "Togawa Shogunate",
     color: "purple",
     emblemUrl: "/icons/factions/togawa.png",
+    shortName: "togawa",
   };
 
   private constructor() {}

@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Player, PlayerFaction } from "../Player";
 import { RootState } from "../app/store";
 import { playersSlice } from "../app/playersStore";
+import { LocalizationState } from "../app/localizationStore";
 
 interface IFactionSelectProps {
   faction: string;
@@ -15,7 +16,10 @@ interface IFactionSelectState {
 }
 
 type FactionSelectProps = IFactionSelectProps &
-  typeof playersSlice.actions & { players: Player[] };
+  typeof playersSlice.actions & {
+    players: Player[];
+    localization: LocalizationState;
+  };
 
 class FactionSelect extends React.Component<
   FactionSelectProps,
@@ -26,7 +30,7 @@ class FactionSelect extends React.Component<
     super(props);
     this.faction = PlayerFaction.getByName(props.faction);
     const player = this.props.players.filter(
-      (p) => p.faction.name === this.faction.name
+      (p) => p.faction.shortName === this.faction.shortName
     );
     this.state = {
       player: player.length > 0 ? player[0] : null,
@@ -36,7 +40,7 @@ class FactionSelect extends React.Component<
   public componentDidUpdate(prevProps: FactionSelectProps) {
     if (prevProps.players !== this.props.players) {
       const players = this.props.players.filter(
-        (p) => p.faction.name === this.faction.name
+        (p) => p.faction.shortName === this.faction.shortName
       );
       this.setState({ player: players.length > 0 ? players[0] : null });
     }
@@ -53,7 +57,9 @@ class FactionSelect extends React.Component<
             {this.state.player ? (
               <div>{this.state.player.name}</div>
             ) : (
-              <NavLink to={"player/" + this.props.faction}>Select</NavLink>
+              <NavLink to={"player/" + this.props.faction}>
+                {this.props.localization.strings.selectButton}
+              </NavLink>
             )}
           </div>
         </div>
@@ -64,6 +70,7 @@ class FactionSelect extends React.Component<
 
 const mapStateToProps = (state: RootState, ownProps: IFactionSelectProps) => ({
   players: state.players.players,
+  localization: state.localization,
 });
 
 export default connect(

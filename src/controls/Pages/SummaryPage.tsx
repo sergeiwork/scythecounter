@@ -4,7 +4,11 @@ import { Player } from "../../Player";
 import { RootState } from "../../app/store";
 import { Button } from "react-materialize";
 import { RouteComponentProps } from "react-router-dom";
-type SummaryPageProps = { players: Player[] } & RouteComponentProps;
+import { LocalizationState } from "../../app/localizationStore";
+type SummaryPageProps = {
+  players: Player[];
+  localization: LocalizationState;
+} & RouteComponentProps;
 
 class SummaryPage extends React.Component<SummaryPageProps> {
   public render() {
@@ -12,7 +16,7 @@ class SummaryPage extends React.Component<SummaryPageProps> {
       <div className="contentContainer">
         <table className="summaryTable">
           <thead>
-            <td>Faction</td>
+            <td>{this.props.localization.strings.faction}</td>
             <td>
               <img src="/icons/name.png" alt="name" />
             </td>
@@ -34,7 +38,7 @@ class SummaryPage extends React.Component<SummaryPageProps> {
             <td>
               <img src="/icons/coin.png" alt="bonus" />
             </td>
-            <td>Total</td>
+            <td>{this.props.localization.strings.totalLabel}</td>
           </thead>
           {this.props.players
             .map((p) => p)
@@ -44,7 +48,10 @@ class SummaryPage extends React.Component<SummaryPageProps> {
                 <td>
                   <div className="summaryFactionCell">
                     <img src={p.faction.emblemUrl} alt="faction badge" />
-                    {p.faction.name}
+                    {this.props.localization.strings.getString(
+                      p.faction.shortName + "Faction",
+                      this.props.localization.currentLanguage
+                    )}
                   </div>
                 </td>
                 <td>{p.name}</td>
@@ -63,7 +70,7 @@ class SummaryPage extends React.Component<SummaryPageProps> {
             this.props.history.push("/");
           }}
         >
-          Go Back
+          {this.props.localization.strings.goBackButton}
         </Button>
       </div>
     );
@@ -72,6 +79,7 @@ class SummaryPage extends React.Component<SummaryPageProps> {
 
 const mapStateToProps = (state: RootState) => ({
   players: state.players.players,
+  localization: state.localization,
 });
 
 export default connect(mapStateToProps)(SummaryPage as any);

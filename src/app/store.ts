@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import playersReducer from "./playersStore";
+import localizationReducer from "./localizationStore";
 
 export const store = configureStore({
   reducer: {
     players: playersReducer,
+    localization: localizationReducer,
   },
 });
 

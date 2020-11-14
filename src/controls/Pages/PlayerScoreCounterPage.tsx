@@ -2,12 +2,15 @@ import React, { ReactNode } from "react";
 import { Button } from "react-materialize";
 import { connect } from "react-redux";
 import { RouteComponentProps } from "react-router-dom";
+import { LocalizationState } from "../../app/localizationStore";
 import { playersSlice } from "../../app/playersStore";
+import { RootState } from "../../app/store";
 import { Player, PlayerFaction } from "../../Player";
 import CustomInput from "../CustomInput";
 
 type PlayerScoreCounterProps = {
   player: Player | null;
+  localization: LocalizationState;
 } & RouteComponentProps<string[]> &
   typeof playersSlice.actions;
 
@@ -53,59 +56,64 @@ class PlayerScoreCounterPage extends React.Component<
       <div className="PlayerScoreCounter contentContainer">
         <form onSubmit={(e) => e.preventDefault()}>
           <h1 style={{ textAlign: "center" }}>
-            {this.state.player.faction.name}
+            {this.props.localization.strings.getString(
+              this.state.player.faction.shortName + "Faction",
+              this.props.localization.currentLanguage
+            )}
           </h1>
           <CustomInput
             name="name"
-            label="Enter your name"
+            label={this.props.localization.strings.nameLabel}
             icon="/icons/name.png"
             value={this.state.player.name}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="popularity"
-            label="Enter your popularity"
+            label={this.props.localization.strings.popularityLabel}
             icon="/icons/heart.png"
             value={this.state.player.popularity}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="money"
-            label="Enter your money"
+            label={this.props.localization.strings.moneyLabel}
             icon="/icons/coin.png"
             value={this.state.player.money}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="stars"
-            label="Enter your stars"
+            label={this.props.localization.strings.starsLabel}
             icon="/icons/star.png"
             value={this.state.player.stars}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="hex"
-            label="Enter your hex"
+            label={this.props.localization.strings.hexLabel}
             icon="/icons/hex.png"
             value={this.state.player.hex}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="resources"
-            label="Enter your resources"
+            label={this.props.localization.strings.resourcesLabel}
             icon="/icons/resource.png"
             value={this.state.player.resources}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="bonus"
-            label="Enter your bonus"
+            label={this.props.localization.strings.bonusLabel}
             icon="/icons/coin.png"
             value={this.state.player.bonus}
             changeHandler={this.changeHandler}
           />
           <div className="resultRow">
-            <label htmlFor="total">Total:</label>
+            <label htmlFor="total">
+              {this.props.localization.strings.totalLabel}
+            </label>
             <input
               type="text"
               name="total"
@@ -125,7 +133,7 @@ class PlayerScoreCounterPage extends React.Component<
               }}
               style={{ marginRight: "2rem" }}
             >
-              Finish
+              {this.props.localization.strings.finishButton}
             </Button>
             <Button
               className="brown lighten-3"
@@ -135,7 +143,7 @@ class PlayerScoreCounterPage extends React.Component<
                 this.addPlayer();
               }}
             >
-              Next Player
+              {this.props.localization.strings.nextPlayerButton}
             </Button>
           </div>
         </form>
@@ -144,7 +152,8 @@ class PlayerScoreCounterPage extends React.Component<
   }
 }
 
-export default connect(
-  null,
-  playersSlice.actions
-)(PlayerScoreCounterPage as any);
+export default connect((state: RootState) => {
+  return {
+    localization: state.localization,
+  };
+}, playersSlice.actions)(PlayerScoreCounterPage as any);
