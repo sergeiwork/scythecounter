@@ -1,11 +1,20 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import playersReducer from "./playersStore";
-import localizationReducer from "./localizationStore";
+import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
+import {
+  Action as LocalizeAction,
+  localizeReducer,
+  LocalizeState,
+} from "react-localize-redux";
+import playersReducer, { PlayersState } from "./playersStore";
 
-export const store = configureStore({
+type reducer = {
+  players: PlayersState;
+  localize: LocalizeState;
+};
+
+export const store = configureStore<reducer, LocalizeAction>({
   reducer: {
     players: playersReducer,
-    localization: localizationReducer,
+    localize: localizeReducer,
   },
 });
 

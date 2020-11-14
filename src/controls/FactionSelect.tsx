@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Player, PlayerFaction } from "../Player";
 import { RootState } from "../app/store";
 import { playersSlice } from "../app/playersStore";
-import { LocalizationState } from "../app/localizationStore";
+import { Translate } from "react-localize-redux";
 
 interface IFactionSelectProps {
   faction: string;
@@ -18,7 +18,6 @@ interface IFactionSelectState {
 type FactionSelectProps = IFactionSelectProps &
   typeof playersSlice.actions & {
     players: Player[];
-    localization: LocalizationState;
   };
 
 class FactionSelect extends React.Component<
@@ -58,7 +57,7 @@ class FactionSelect extends React.Component<
               <div>{this.state.player.name}</div>
             ) : (
               <NavLink to={"player/" + this.props.faction}>
-                {this.props.localization.strings.selectButton}
+                <Translate id="selectButton" />
               </NavLink>
             )}
           </div>
@@ -70,7 +69,6 @@ class FactionSelect extends React.Component<
 
 const mapStateToProps = (state: RootState, ownProps: IFactionSelectProps) => ({
   players: state.players.players,
-  localization: state.localization,
 });
 
 export default connect(

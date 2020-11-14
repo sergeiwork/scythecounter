@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Player } from "../Player";
 
-interface PlayersState {
+export interface PlayersState {
   players: Player[];
 }
 

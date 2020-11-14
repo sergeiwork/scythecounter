@@ -1,23 +1,30 @@
 import React, { ReactNode } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { LocalizeContextProps, withLocalize } from "react-localize-redux";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import "./App.css";
 import MainPage from "./controls/Pages/MainPage";
 import PlayerScoreCounterPage from "./controls/Pages/PlayerScoreCounterPage";
 import SummaryPage from "./controls/Pages/SummaryPage";
-import { Player } from "./Player";
 
-interface AppState {
-  player: Player;
-}
+import en from "./localization/en.json";
+import ru from "./localization/ru.json";
 
-class App extends React.Component<{}, AppState> {
-  public constructor(props: {}) {
+class App extends React.Component<LocalizeContextProps> {
+  public constructor(props: LocalizeContextProps) {
     super(props);
-    this.state = {
-      player: new Player(null),
-    };
+    const lng = localStorage.getItem("language") ?? "en";
+    props.initialize({
+      languages: [
+        { name: "English", code: "en" },
+        { name: "Русский", code: "ru" },
+      ],
+      options: { renderToStaticMarkup, defaultLanguage: lng },
+    });
+    props.addTranslationForLanguage(en, "en");
+    props.addTranslationForLanguage(ru, "ru");
+    if (lng) props.setActiveLanguage(lng);
   }
-
   public render(): ReactNode {
     return (
       <Router>
@@ -31,4 +38,4 @@ class App extends React.Component<{}, AppState> {
   }
 }
 
-export default App;
+export default withLocalize(App);

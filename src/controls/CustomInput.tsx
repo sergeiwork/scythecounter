@@ -1,4 +1,5 @@
 import React from "react";
+import { Translate } from "react-localize-redux";
 
 interface numericInputProps {
   value: number | string;
@@ -38,7 +39,9 @@ export default class CustomInput extends React.Component<numericInputProps> {
             onKeyUp={this.onKeyUp}
             style={{ textAlign: "center" }}
           />
-          <span className="helper-text">{this.props.label}</span>
+          <span className="helper-text">
+            <Translate id={this.props.label} />
+          </span>
         </div>
       </div>
     );

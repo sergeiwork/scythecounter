@@ -1,16 +1,14 @@
 import React, { ReactNode } from "react";
+import { Translate } from "react-localize-redux";
 import { Button } from "react-materialize";
 import { connect } from "react-redux";
 import { RouteComponentProps } from "react-router-dom";
-import { LocalizationState } from "../../app/localizationStore";
 import { playersSlice } from "../../app/playersStore";
-import { RootState } from "../../app/store";
 import { Player, PlayerFaction } from "../../Player";
 import CustomInput from "../CustomInput";
 
 type PlayerScoreCounterProps = {
   player: Player | null;
-  localization: LocalizationState;
 } & RouteComponentProps<string[]> &
   typeof playersSlice.actions;
 
@@ -56,63 +54,60 @@ class PlayerScoreCounterPage extends React.Component<
       <div className="PlayerScoreCounter contentContainer">
         <form onSubmit={(e) => e.preventDefault()}>
           <h1 style={{ textAlign: "center" }}>
-            {this.props.localization.strings.getString(
-              this.state.player.faction.shortName + "Faction",
-              this.props.localization.currentLanguage
-            )}
+            <Translate id={this.state.player.faction.shortName + "Faction"} />
           </h1>
           <CustomInput
             name="name"
-            label={this.props.localization.strings.nameLabel}
+            label="nameLabel"
             icon="/icons/name.png"
             value={this.state.player.name}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="popularity"
-            label={this.props.localization.strings.popularityLabel}
+            label="popularityLabel"
             icon="/icons/heart.png"
             value={this.state.player.popularity}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="money"
-            label={this.props.localization.strings.moneyLabel}
+            label="moneyLabel"
             icon="/icons/coin.png"
             value={this.state.player.money}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="stars"
-            label={this.props.localization.strings.starsLabel}
+            label="starsLabel"
             icon="/icons/star.png"
             value={this.state.player.stars}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="hex"
-            label={this.props.localization.strings.hexLabel}
+            label="hexLabel"
             icon="/icons/hex.png"
             value={this.state.player.hex}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="resources"
-            label={this.props.localization.strings.resourcesLabel}
+            label="resourcesLabel"
             icon="/icons/resource.png"
             value={this.state.player.resources}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="bonus"
-            label={this.props.localization.strings.bonusLabel}
+            label="bonusLabel"
             icon="/icons/coin.png"
             value={this.state.player.bonus}
             changeHandler={this.changeHandler}
           />
           <div className="resultRow">
             <label htmlFor="total">
-              {this.props.localization.strings.totalLabel}
+              <Translate id="totalLabel" />
             </label>
             <input
               type="text"
@@ -133,7 +128,7 @@ class PlayerScoreCounterPage extends React.Component<
               }}
               style={{ marginRight: "2rem" }}
             >
-              {this.props.localization.strings.finishButton}
+              <Translate id="finishButton" />
             </Button>
             <Button
               className="brown lighten-3"
@@ -143,7 +138,7 @@ class PlayerScoreCounterPage extends React.Component<
                 this.addPlayer();
               }}
             >
-              {this.props.localization.strings.nextPlayerButton}
+              <Translate id="nextPlayerButton" />
             </Button>
           </div>
         </form>
@@ -152,8 +147,7 @@ class PlayerScoreCounterPage extends React.Component<
   }
 }
 
-export default connect((state: RootState) => {
-  return {
-    localization: state.localization,
-  };
-}, playersSlice.actions)(PlayerScoreCounterPage as any);
+export default connect(
+  null,
+  playersSlice.actions
+)(PlayerScoreCounterPage as any);
