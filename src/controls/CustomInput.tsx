@@ -1,19 +1,18 @@
 import React from "react";
 
 interface numericInputProps {
-  value: number;
+  value: number | string;
   changeHandler(event: React.ChangeEvent<HTMLInputElement>): void;
   name: string;
   label: string;
   icon: string;
 }
 
-export default class NumericInput extends React.Component<numericInputProps> {
+export default class CustomInput extends React.Component<numericInputProps> {
   private onKeyUp = (ev: React.KeyboardEvent<HTMLInputElement>): void => {
     if (ev.key === "Enter") {
       const form = ev.currentTarget.form!;
       const index = Array.prototype.indexOf.call(form, ev.currentTarget);
-      console.log(form.elements[index + 1]);
       (form.elements[index + 1] as HTMLInputElement)?.focus();
       ev.preventDefault();
     }
@@ -30,8 +29,10 @@ export default class NumericInput extends React.Component<numericInputProps> {
             type="text"
             name={this.props.name}
             id={this.props.name}
-            pattern="[0-9]*"
-            inputMode="numeric"
+            {...(typeof this.props.value === "number" && {
+              pattern: "[0-9]*",
+              inputMode: "numeric",
+            })}
             value={this.props.value}
             onChange={this.props.changeHandler}
             onKeyUp={this.onKeyUp}

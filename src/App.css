@@ -47,6 +47,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  max-width: 100%;
+  min-width: 100%;
 }
 .resultRow > input {
   color: tomato;
@@ -63,4 +65,10 @@
 
 .mra {
   margin-right: auto;
+}
+
+.playerNameInput {
+  flex-grow: 1;
+  margin-left: "10px";
+  text-align: "center";
 }

@@ -1,9 +1,11 @@
+import { connect } from "react-redux";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import { Player, PlayerFaction } from "../Player";
+import { RootState } from "../app/store";
+import { playersSlice } from "../app/playersStore";
 
 interface IFactionSelectProps {
-  players: Player[];
   faction: string;
   mra?: boolean | undefined;
 }
@@ -12,23 +14,24 @@ interface IFactionSelectState {
   player: Player | null;
 }
 
-export default class FactionSelect extends React.Component<
-  IFactionSelectProps,
+type FactionSelectProps = IFactionSelectProps &
+  typeof playersSlice.actions & { players: Player[] };
+
+class FactionSelect extends React.Component<
+  FactionSelectProps,
   IFactionSelectState
 > {
   private faction: PlayerFaction;
-  constructor(props: IFactionSelectProps) {
+  constructor(props: FactionSelectProps) {
     super(props);
     this.faction = PlayerFaction.getByName(props.faction);
-    const players = this.props.players.filter(
-      (p) => p.faction === this.faction
-    );
+    const player = this.props.players.filter((p) => p.faction === this.faction);
     this.state = {
-      player: players.length > 0 ? players[0] : null,
+      player: player.length > 0 ? player[0] : null,
     };
   }
 
-  public componentDidUpdate(prevProps: IFactionSelectProps) {
+  public componentDidUpdate(prevProps: FactionSelectProps) {
     if (prevProps.players !== this.props.players) {
       const players = this.props.players.filter(
         (p) => p.faction === this.faction
@@ -42,15 +45,13 @@ export default class FactionSelect extends React.Component<
       <div className={"col s6 m4 l2" + (this.props.mra ? " mra" : "")}>
         <div className="card">
           <div className="card-image">
-            <img src={this.faction?.emblemUrl ?? ""} />
+            <img src={this.faction?.emblemUrl ?? ""} alt="faction badge" />
           </div>
           <div className="card-action">
             {this.state.player ? (
               <div>{this.state.player.name}</div>
             ) : (
-              <NavLink to={"player/" + (this.props.players.length + 1)}>
-                Select
-              </NavLink>
+              <NavLink to={"player/" + this.props.faction}>Select</NavLink>
             )}
           </div>
         </div>
@@ -58,3 +59,12 @@ export default class FactionSelect extends React.Component<
     );
   }
 }
+
+const mapStateToProps = (state: RootState, ownProps: IFactionSelectProps) => ({
+  players: state.players.players,
+});
+
+export default connect(
+  mapStateToProps,
+  playersSlice.actions
+)(FactionSelect as any);

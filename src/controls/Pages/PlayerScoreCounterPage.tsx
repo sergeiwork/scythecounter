@@ -1,12 +1,15 @@
 import React, { ReactNode } from "react";
 import { Button } from "react-materialize";
+import { connect } from "react-redux";
 import { RouteComponentProps } from "react-router-dom";
+import { playersSlice } from "../../app/playersStore";
 import { Player, PlayerFaction } from "../../Player";
-import NumericInput from "../NumericInput";
+import CustomInput from "../CustomInput";
 
 type PlayerScoreCounterProps = {
   player: Player | null;
-} & RouteComponentProps<string[]>;
+} & RouteComponentProps<string[]> &
+  typeof playersSlice.actions;
 
 interface IPlayerScoreCounterState {
   player: Player;
@@ -18,19 +21,19 @@ class PlayerScoreCounterPage extends React.Component<
 > {
   public constructor(props: PlayerScoreCounterProps) {
     super(props);
-    console.log(props.match.params[0]);
     this.state = {
       player:
         props.player ??
         new Player({
-          faction: PlayerFaction.getByName(props.match.params[1]),
+          faction: PlayerFaction.getByName(props.match.params[0]),
         }),
     };
   }
 
   private changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState((s, _) => {
-      const value: number = +e.target.value;
+      const value: number | string =
+        e.target.name === "name" ? e.target.value : +e.target.value;
       const player: Player = new Player({
         ...s.player,
         [e.target.name]: value,
@@ -40,6 +43,11 @@ class PlayerScoreCounterPage extends React.Component<
     });
   };
 
+  private addPlayer = () => {
+    this.props.addPlayer(this.state.player);
+    this.props.history.push("/");
+  };
+
   public render(): ReactNode {
     return (
       <div className="PlayerScoreCounter contentContainer">
@@ -47,42 +55,49 @@ class PlayerScoreCounterPage extends React.Component<
           <h1 style={{ textAlign: "center" }}>
             {this.state.player.faction.name}
           </h1>
-          <NumericInput
+          <CustomInput
+            name="name"
+            label="Enter your name"
+            icon="/icons/name.png"
+            value={this.state.player.name}
+            changeHandler={this.changeHandler}
+          />
+          <CustomInput
             name="popularity"
             label="Enter your popularity"
             icon="/icons/heart.png"
             value={this.state.player.popularity}
             changeHandler={this.changeHandler}
           />
-          <NumericInput
+          <CustomInput
             name="money"
             label="Enter your money"
             icon="/icons/coin.png"
             value={this.state.player.money}
             changeHandler={this.changeHandler}
           />
-          <NumericInput
+          <CustomInput
             name="stars"
             label="Enter your stars"
             icon="/icons/star.png"
             value={this.state.player.stars}
             changeHandler={this.changeHandler}
           />
-          <NumericInput
+          <CustomInput
             name="hex"
             label="Enter your hex"
             icon="/icons/hex.png"
             value={this.state.player.hex}
             changeHandler={this.changeHandler}
           />
-          <NumericInput
+          <CustomInput
             name="resources"
             label="Enter your resources"
             icon="/icons/resource.png"
             value={this.state.player.resources}
             changeHandler={this.changeHandler}
           />
-          <NumericInput
+          <CustomInput
             name="bonus"
             label="Enter your bonus"
             icon="/icons/coin.png"
@@ -114,7 +129,9 @@ class PlayerScoreCounterPage extends React.Component<
               className="brown lighten-3"
               large
               waves="teal"
-              onClick={() => {}}
+              onClick={() => {
+                this.addPlayer();
+              }}
             >
               Next Player
             </Button>
@@ -125,4 +142,7 @@ class PlayerScoreCounterPage extends React.Component<
   }
 }
 
-export default PlayerScoreCounterPage;
+export default connect(
+  null,
+  playersSlice.actions
+)(PlayerScoreCounterPage as any);
