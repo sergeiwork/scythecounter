@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import "./App.css";
 import MainPage from "./controls/Pages/MainPage";
 import PlayerScoreCounterPage from "./controls/Pages/PlayerScoreCounterPage";
+import SummaryPage from "./controls/Pages/SummaryPage";
 import { Player } from "./Player";
 
 interface AppState {
@@ -22,6 +23,7 @@ class App extends React.Component<{}, AppState> {
       <Router>
         <Switch>
           <Route path="/" exact component={MainPage} />
+          <Route path="/summary" exact component={SummaryPage} />
           <Route path="/player/*" component={PlayerScoreCounterPage} />
         </Switch>
       </Router>

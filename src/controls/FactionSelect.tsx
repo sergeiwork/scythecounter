@@ -25,7 +25,9 @@ class FactionSelect extends React.Component<
   constructor(props: FactionSelectProps) {
     super(props);
     this.faction = PlayerFaction.getByName(props.faction);
-    const player = this.props.players.filter((p) => p.faction === this.faction);
+    const player = this.props.players.filter(
+      (p) => p.faction.name === this.faction.name
+    );
     this.state = {
       player: player.length > 0 ? player[0] : null,
     };
@@ -34,7 +36,7 @@ class FactionSelect extends React.Component<
   public componentDidUpdate(prevProps: FactionSelectProps) {
     if (prevProps.players !== this.props.players) {
       const players = this.props.players.filter(
-        (p) => p.faction === this.faction
+        (p) => p.faction.name === this.faction.name
       );
       this.setState({ player: players.length > 0 ? players[0] : null });
     }

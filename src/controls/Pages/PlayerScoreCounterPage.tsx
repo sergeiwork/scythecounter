@@ -43,9 +43,9 @@ class PlayerScoreCounterPage extends React.Component<
     });
   };
 
-  private addPlayer = () => {
+  private addPlayer = (goToSummary: boolean = false) => {
     this.props.addPlayer(this.state.player);
-    this.props.history.push("/");
+    this.props.history.push(goToSummary ? "/summary" : "/");
   };
 
   public render(): ReactNode {
@@ -120,7 +120,9 @@ class PlayerScoreCounterPage extends React.Component<
               className="brown lighten-3"
               large
               waves="teal"
-              onClick={() => {}}
+              onClick={() => {
+                this.addPlayer(true);
+              }}
               style={{ marginRight: "2rem" }}
             >
               Finish

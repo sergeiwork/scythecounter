@@ -72,3 +72,22 @@
   margin-left: "10px";
   text-align: "center";
 }
+
+.winner {
+  background-color: tomato;
+}
+
+.summaryTable img {
+  width: 20px;
+}
+
+.summaryFactionCell > img {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.summaryFactionCell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
