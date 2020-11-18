@@ -6,11 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Points counter for scythe board game" />
-    <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
+    <style>
+      #root {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
+      .contentContainer {
+        max-width: 40vw;
+        min-width: 40vw;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+      }
+      @media only screen and (max-width: 600px) {
+        .contentContainer {
+          min-width: 80vw;
+          max-width: 80vw;
+        }
+      }
+
+      .factionRow {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .mra {
+        margin-right: auto;
+      }
+    </style>
+
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -29,16 +68,87 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <div id="root">
+      <div class="contentContainer">
+        <div class="row factionRow">
+          <div class="col s6 m4 l2">
+            <div class="card">
+              <div class="card-image">
+                <div
+                  style="width: 100px; height: 100px; background: lightgray"
+                ></div>
+                <div class="card-action">Select</div>
+              </div>
+            </div>
+          </div>
+          <div class="col s6 m4 l2">
+            <div class="card">
+              <div class="card-image">
+                <div
+                  style="width: 100px; height: 100px; background: lightgray"
+                ></div>
+                <div class="card-action">Select</div>
+              </div>
+            </div>
+          </div>
+          <div class="col s6 m4 l2">
+            <div class="card">
+              <div class="card-image">
+                <div
+                  style="width: 100px; height: 100px; background: lightgray"
+                ></div>
+                <div class="card-action">Select</div>
+              </div>
+            </div>
+          </div>
+          <div class="col s6 m4 l2">
+            <div class="card">
+              <div class="card-image">
+                <div
+                  style="width: 100px; height: 100px; background: lightgray"
+                ></div>
+                <div class="card-action">Select</div>
+              </div>
+            </div>
+          </div>
+          <div class="col s6 m4 l2 mra">
+            <div class="card">
+              <div class="card-image">
+                <div
+                  style="width: 100px; height: 100px; background: lightgray"
+                ></div>
+                <div class="card-action">Select</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row factionRow">
+          <div class="col s6 m4 l2 mra">
+            <div class="card">
+              <div class="card-image">
+                <div
+                  style="width: 100px; height: 100px; background: lightgray"
+                ></div>
+                <div class="card-action">Select</div>
+              </div>
+            </div>
+          </div>
+          <div class="col s6 m4 l2 mra">
+            <div class="card">
+              <div class="card-image">
+                <div
+                  style="width: 100px; height: 100px; background: lightgray"
+                ></div>
+                <div class="card-action">Select</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn">Reset</button>
+          <button class="btn">Summary</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

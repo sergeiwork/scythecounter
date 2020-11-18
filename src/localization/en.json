@@ -20,5 +20,6 @@
   "finishButton": "Finish",
   "faction": "Faction",
   "selectButton": "Select",
-  "goBackButton": "Go Back"
+  "goBackButton": "Go Back",
+  "selectLanguageLabel": "Select Language"
 }

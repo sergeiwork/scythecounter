@@ -20,5 +20,6 @@
   "finishButton": "Завершить",
   "faction": "Нация",
   "selectButton": "Выбрать",
-  "goBackButton": "Назад"
+  "goBackButton": "Назад",
+  "selectLanguageLabel": "Выберите язык"
 }
