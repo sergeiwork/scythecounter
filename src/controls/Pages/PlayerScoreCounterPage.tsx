@@ -59,49 +59,53 @@ class PlayerScoreCounterPage extends React.Component<
           <CustomInput
             name="name"
             label="nameLabel"
-            icon="/icons/name.png"
+            icon={window.location.origin + "/scythecounter" + "/icons/name.png"}
             value={this.state.player.name}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="popularity"
             label="popularityLabel"
-            icon="/icons/heart.png"
+            icon={
+              window.location.origin + "/scythecounter" + "/icons/heart.png"
+            }
             value={this.state.player.popularity}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="money"
             label="moneyLabel"
-            icon="/icons/coin.png"
+            icon={window.location.origin + "/scythecounter" + "/icons/coin.png"}
             value={this.state.player.money}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="stars"
             label="starsLabel"
-            icon="/icons/star.png"
+            icon={window.location.origin + "/scythecounter" + "/icons/star.png"}
             value={this.state.player.stars}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="hex"
             label="hexLabel"
-            icon="/icons/hex.png"
+            icon={window.location.origin + "/scythecounter" + "/icons/hex.png"}
             value={this.state.player.hex}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="resources"
             label="resourcesLabel"
-            icon="/icons/resource.png"
+            icon={
+              window.location.origin + "/scythecounter" + "/icons/resource.png"
+            }
             value={this.state.player.resources}
             changeHandler={this.changeHandler}
           />
           <CustomInput
             name="bonus"
             label="bonusLabel"
-            icon="/icons/coin.png"
+            icon={window.location.origin + "/scythecounter" + "/icons/coin.png"}
             value={this.state.player.bonus}
             changeHandler={this.changeHandler}
           />
