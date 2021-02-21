@@ -27,7 +27,7 @@ class App extends React.Component<LocalizeContextProps> {
   }
   public render(): ReactNode {
     return (
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path="/" exact component={MainPage} />
           <Route path="/summary" exact component={SummaryPage} />

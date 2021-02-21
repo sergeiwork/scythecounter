@@ -20,25 +20,72 @@ class SummaryPage extends React.Component<SummaryPageProps> {
                 <Translate id="faction" />
               </td>
               <td>
-                <img src="/icons/name.png" alt="name" />
+                <img
+                  src={
+                    window.location.origin +
+                    "/scythecounter" +
+                    "/icons/name.png"
+                  }
+                  alt="name"
+                />
               </td>
               <td>
-                <img src="/icons/heart.png" alt="heart" />
+                <img
+                  src={
+                    window.location.origin +
+                    "/scythecounter" +
+                    "/icons/heart.png"
+                  }
+                  alt="heart"
+                />
               </td>
               <td>
-                <img src="/icons/coin.png" alt="coin" />
+                <img
+                  src={
+                    window.location.origin +
+                    "/scythecounter" +
+                    "/icons/coin.png"
+                  }
+                  alt="coin"
+                />
               </td>
               <td>
-                <img src="/icons/star.png" alt="star" />
+                <img
+                  src={
+                    window.location.origin +
+                    "/scythecounter" +
+                    "/icons/star.png"
+                  }
+                  alt="star"
+                />
               </td>
               <td>
-                <img src="/icons/hex.png" alt="hex" />
+                <img
+                  src={
+                    window.location.origin + "/scythecounter" + "/icons/hex.png"
+                  }
+                  alt="hex"
+                />
               </td>
               <td>
-                <img src="/icons/resource.png" alt="resource" />
+                <img
+                  src={
+                    window.location.origin +
+                    "/scythecounter" +
+                    "/icons/resource.png"
+                  }
+                  alt="resource"
+                />
               </td>
               <td>
-                <img src="/icons/coin.png" alt="bonus" />
+                <img
+                  src={
+                    window.location.origin +
+                    "/scythecounter" +
+                    "/icons/coin.png"
+                  }
+                  alt="bonus"
+                />
               </td>
               <td>
                 <Translate id="totalLabel" />
@@ -56,7 +103,14 @@ class SummaryPage extends React.Component<SummaryPageProps> {
                 >
                   <td>
                     <div className="summaryFactionCell">
-                      <img src={p.faction.emblemUrl} alt="faction badge" />
+                      <img
+                        src={
+                          window.location.origin +
+                          "/scythecounter" +
+                          p.faction.emblemUrl
+                        }
+                        alt="faction badge"
+                      />
                       <Translate id={p.faction.shortName + "Faction"} />
                     </div>
                   </td>

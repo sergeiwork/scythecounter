@@ -50,7 +50,14 @@ class FactionSelect extends React.Component<
       <div className={"col s6 m4 l2" + (this.props.mra ? " mra" : "")}>
         <div className="card">
           <div className="card-image">
-            <img src={this.faction?.emblemUrl ?? ""} alt="faction badge" />
+            <img
+              src={
+                window.location.origin +
+                  "/scythecounter" +
+                  this.faction?.emblemUrl ?? ""
+              }
+              alt="faction badge"
+            />
           </div>
           <div className="card-action">
             {this.state.player ? (

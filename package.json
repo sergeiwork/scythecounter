@@ -1,8 +1,8 @@
 {
   "name": "scythecounter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
-  "homepage": "https://sergeiwork.github.io/scythecounter/",
+  "homepage": "https://sergeiwork.github.io/scythecounter",
   "dependencies": {
     "@reduxjs/toolkit": "^1.2.5",
     "@testing-library/jest-dom": "^4.2.4",
