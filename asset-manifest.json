@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ScytheCounter/static/css/main.81d43f85.chunk.css",
+    "main.js": "/ScytheCounter/static/js/main.c18bb3b5.chunk.js",
+    "main.js.map": "/ScytheCounter/static/js/main.c18bb3b5.chunk.js.map",
+    "runtime-main.js": "/ScytheCounter/static/js/runtime-main.bc08014d.js",
+    "runtime-main.js.map": "/ScytheCounter/static/js/runtime-main.bc08014d.js.map",
+    "static/css/2.a2a5119c.chunk.css": "/ScytheCounter/static/css/2.a2a5119c.chunk.css",
+    "static/js/2.73960a7c.chunk.js": "/ScytheCounter/static/js/2.73960a7c.chunk.js",
+    "static/js/2.73960a7c.chunk.js.map": "/ScytheCounter/static/js/2.73960a7c.chunk.js.map",
+    "index.html": "/ScytheCounter/index.html",
+    "static/css/2.a2a5119c.chunk.css.map": "/ScytheCounter/static/css/2.a2a5119c.chunk.css.map",
+    "static/css/main.81d43f85.chunk.css.map": "/ScytheCounter/static/css/main.81d43f85.chunk.css.map",
+    "static/js/2.73960a7c.chunk.js.LICENSE.txt": "/ScytheCounter/static/js/2.73960a7c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bc08014d.js",
+    "static/css/2.a2a5119c.chunk.css",
+    "static/js/2.73960a7c.chunk.js",
+    "static/css/main.81d43f85.chunk.css",
+    "static/js/main.c18bb3b5.chunk.js"
+  ]
+}
