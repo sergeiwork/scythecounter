@@ -30,6 +30,8 @@ class MainPage extends React.Component<MainPageProps> {
           <div className="row factionRow">
             <FactionSelect faction="albion" mra />
             <FactionSelect faction="togawa" mra />
+            <FactionSelect faction="tesla" mra />
+            <FactionSelect faction="fenris" mra />
           </div>
           <div className="row">
             <Button

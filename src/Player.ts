@@ -20,6 +20,10 @@ export class PlayerFaction {
         return PlayerFaction.Albion;
       case "togawa":
         return PlayerFaction.Togawa;
+      case "tesla":
+        return PlayerFaction.Tesla;
+      case "fenris":
+        return PlayerFaction.Fenris;
       default:
         return PlayerFaction.Polania;
     }
@@ -66,6 +70,18 @@ export class PlayerFaction {
     color: "purple",
     emblemUrl: "/icons/factions/togawa.png",
     shortName: "togawa",
+  };
+  public static Tesla: PlayerFaction = {
+    name: "Vesna Tesla ",
+    color: "light-blue",
+    emblemUrl: "/icons/factions/tesla.webp",
+    shortName: "tesla",
+  };
+  public static Fenris: PlayerFaction = {
+    name: "Fenris",
+    color: "orange",
+    emblemUrl: "/icons/factions/fenris.webp",
+    shortName: "fenris",
   };
 
   private constructor() {}
