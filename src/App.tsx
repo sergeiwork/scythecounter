@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { LocalizeContextProps, withLocalize } from "react-localize-redux";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, Switch, HashRouter } from "react-router-dom";
 import "./App.css";
 import MainPage from "./controls/Pages/MainPage";
 import PlayerScoreCounterPage from "./controls/Pages/PlayerScoreCounterPage";
@@ -12,6 +12,7 @@ import ru from "./localization/ru.json";
 
 class App extends React.Component<LocalizeContextProps> {
   public constructor(props: LocalizeContextProps) {
+    console.log('v0.1');
     super(props);
     const lng = localStorage.getItem("language") ?? "en";
     props.initialize({
@@ -27,13 +28,13 @@ class App extends React.Component<LocalizeContextProps> {
   }
   public render(): ReactNode {
     return (
-      <Router basename={process.env.PUBLIC_URL}>
+      <HashRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path="/" exact component={MainPage} />
           <Route path="/summary" exact component={SummaryPage} />
           <Route path="/player/*" component={PlayerScoreCounterPage} />
         </Switch>
-      </Router>
+      </HashRouter>
     );
   }
 }
