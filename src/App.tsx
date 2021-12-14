@@ -5,6 +5,7 @@ import { Route, Switch, HashRouter } from "react-router-dom";
 import "./App.css";
 import MainPage from "./controls/Pages/MainPage";
 import PlayerScoreCounterPage from "./controls/Pages/PlayerScoreCounterPage";
+import PlayersListPage from "./controls/Pages/PlayersListPage";
 import SummaryPage from "./controls/Pages/SummaryPage";
 
 import en from "./localization/en.json";
@@ -31,6 +32,7 @@ class App extends React.Component<LocalizeContextProps> {
       <HashRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path="/" exact component={MainPage} />
+          <Route path="/list" exact component={PlayersListPage} />
           <Route path="/summary" exact component={SummaryPage} />
           <Route path="/player/*" component={PlayerScoreCounterPage} />
         </Switch>

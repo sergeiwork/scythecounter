@@ -84,6 +84,10 @@ export class PlayerFaction {
     shortName: "fenris",
   };
 
+  public static BaseFactions: PlayerFaction[] = [PlayerFaction.Polania, PlayerFaction.Saxony, PlayerFaction.Crimea, PlayerFaction.Nord,PlayerFaction.Rusvet]
+  public static InvadersFactions: PlayerFaction[] = [PlayerFaction.Albion, PlayerFaction.Togawa]
+  public static FenrisFactions: PlayerFaction[] = [PlayerFaction.Tesla, PlayerFaction.Fenris]
+
   private constructor() {}
 }
 
