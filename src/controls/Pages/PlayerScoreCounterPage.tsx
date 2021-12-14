@@ -4,10 +4,12 @@ import { Button } from "react-materialize";
 import { connect } from "react-redux";
 import { RouteComponentProps } from "react-router-dom";
 import { playersSlice } from "../../app/playersStore";
+import { RootState } from "../../app/store";
 import { Player, PlayerFaction } from "../../Player";
 import CustomInput from "../CustomInput";
 
 type PlayerScoreCounterProps = {
+  players: Player[],
   player: Player | null;
 } & RouteComponentProps<string[]> &
   typeof playersSlice.actions;
@@ -24,7 +26,7 @@ class PlayerScoreCounterPage extends React.Component<
     super(props);
     this.state = {
       player:
-        props.player ??
+        props.players.find(player => player.faction === PlayerFaction.getByName(props.match.params[0])) ??
         new Player({
           faction: PlayerFaction.getByName(props.match.params[0]),
         }),
@@ -45,7 +47,8 @@ class PlayerScoreCounterPage extends React.Component<
   };
 
   private addPlayer = (goToSummary: boolean = false) => {
-    this.props.addPlayer(this.state.player);
+    if (this.state.player.name.length > 0)
+      this.props.addPlayer(this.state.player);
     this.props.history.push(goToSummary ? "/summary" : "/");
   };
 
@@ -151,7 +154,11 @@ class PlayerScoreCounterPage extends React.Component<
   }
 }
 
+const mapStateToProps = (state: RootState, ownProps: PlayerScoreCounterProps) => ({
+  players: state.players.players,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   playersSlice.actions
 )(PlayerScoreCounterPage as any);

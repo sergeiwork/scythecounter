@@ -14,7 +14,11 @@ export const playersSlice = createSlice({
   initialState,
   reducers: {
     addPlayer: (state, action: PayloadAction<Player>) => {
-      state.players.push(action.payload);
+      var foundPlayer = state.players.find(player => player.faction === action.payload.faction);
+      if (foundPlayer)
+        state.players[state.players.indexOf(foundPlayer)] = action.payload;
+      else
+        state.players.push(action.payload);
     },
     updatePlayer: (state, action: PayloadAction<Player>) => {
       state.players[state.players.indexOf(action.payload)] = action.payload;

@@ -60,13 +60,13 @@ class FactionSelect extends React.Component<
             />
           </div>
           <div className="card-action">
-            {this.state.player ? (
-              <div>{this.state.player.name}</div>
-            ) : (
-              <NavLink to={"player/" + this.props.faction}>
-                <Translate id="selectButton" />
-              </NavLink>
-            )}
+            <NavLink to={"player/" + this.props.faction}>
+              {this.state.player ? (
+                <span>{this.state.player.name}</span>
+              ) : (
+                  <Translate id="selectButton" />
+              )}
+            </NavLink>
           </div>
         </div>
       </div>
