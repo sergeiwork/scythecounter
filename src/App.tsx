@@ -7,6 +7,7 @@ import MainPage from "./controls/Pages/MainPage";
 import PlayerScoreCounterPage from "./controls/Pages/PlayerScoreCounterPage";
 import PlayersListPage from "./controls/Pages/PlayersListPage";
 import SummaryPage from "./controls/Pages/SummaryPage";
+import "./snow"
 
 import en from "./localization/en.json";
 import ru from "./localization/ru.json";
