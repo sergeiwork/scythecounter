@@ -14,7 +14,7 @@ import ru from "./localization/ru.json";
 
 class App extends React.Component<LocalizeContextProps> {
   public constructor(props: LocalizeContextProps) {
-    console.log('v0.1');
+    console.log('v0.1s');
     super(props);
     const lng = localStorage.getItem("language") ?? "en";
     props.initialize({
