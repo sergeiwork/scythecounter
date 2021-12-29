@@ -40,7 +40,7 @@
             // change these values
             // the 2 element arrays represent min and max values
             if (this.snowfont) {
-                this.pAmount = 50 // amount of particles
+                this.pAmount = 78 // amount of particles
                 this.pSize = [14, 28] // min and max size
                 this.pSwing = [0.1, 1] // min and max oscilation speed for x movement
                 this.pSpeed = [40, 100] // min and max y speed
@@ -89,7 +89,7 @@
                 const velocity = new Vector2(frand(this.pSwing[0], this.pSwing[1]), frand(this.pSpeed[0], this.pSpeed[1]))
                 const size = frand(this.pSize[0], this.pSize[1])
                 const amplitude = frand(this.pAmplitude[0], this.pAmplitude[1])
-                let randChar = this.availableChars[Math.floor(Math.random() * (this.availableChars.length - 1))]
+                let randChar = this.availableChars[i % this.availableChars.length]
                 this.particles.push(new jsParticle(origin, velocity, size, amplitude, randChar))
             }
         },
