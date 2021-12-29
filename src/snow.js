@@ -15,7 +15,7 @@
     elem.style.width = '100%'
     elem.style.height = '100%'
     elem.style.pointerEvents = 'none'
-    elem.style.zIndex = '9999999'
+    elem.style.zIndex = '-9999999'
     body.appendChild(elem)
 
     // Композитный Объект "Снег"
