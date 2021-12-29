@@ -20,13 +20,13 @@
 
     // Композитный Объект "Снег"
     var jsCanvasSnow = {
+        availableChars: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+-*/=%#@&$()?!<>'.split(''),
         canvas: null,
         ctx: null,
         particles: [],
         running: false,
         snowcolor: 'rgba(172,229,238,.7)',
-        snowfont: 'Times',
-        snowflake: '*',
+        snowfont: 'DH_snowflakeskimberle',
 
         start_time: 0,
         frame_time: 0,
@@ -39,7 +39,7 @@
 
             // change these values
             // the 2 element arrays represent min and max values
-            if (this.snowflake && this.snowfont) {
+            if (this.snowfont) {
                 this.pAmount = 50 // amount of particles
                 this.pSize = [14, 28] // min and max size
                 this.pSwing = [0.1, 1] // min and max oscilation speed for x movement
@@ -89,8 +89,8 @@
                 const velocity = new Vector2(frand(this.pSwing[0], this.pSwing[1]), frand(this.pSpeed[0], this.pSpeed[1]))
                 const size = frand(this.pSize[0], this.pSize[1])
                 const amplitude = frand(this.pAmplitude[0], this.pAmplitude[1])
-
-                this.particles.push(new jsParticle(origin, velocity, size, amplitude))
+                let randChar = this.availableChars[Math.floor(Math.random() * (this.availableChars.length - 1))]
+                this.particles.push(new jsParticle(origin, velocity, size, amplitude, randChar))
             }
         },
 
@@ -120,9 +120,9 @@
 
             for (let i = 0; i < this.particles.length; i++) {
                 const particle = this.particles[i]
-                if (this.snowflake && this.snowfont) {
+                if (this.snowfont) {
                     this.ctx.font = particle.size + 'px ' + this.snowfont
-                    this.ctx.fillText(this.snowflake, particle.position.x, particle.position.y)
+                    this.ctx.fillText(particle.char, particle.position.x, particle.position.y)
                 } else {
                     this.ctx.fillRect(particle.position.x, particle.position.y, particle.size, particle.size)
                 }
@@ -138,12 +138,13 @@
         },
     }
 
-    function jsParticle(origin, velocity, size, amplitude) {
+    function jsParticle(origin, velocity, size, amplitude, char) {
         this.origin = origin
         this.position = new Vector2(origin.x, origin.y)
         this.velocity = velocity || new Vector2(0, 0)
         this.size = size
         this.amplitude = amplitude
+        this.char = char
 
         // randomize start values a bit
         this.dx = Math.random() * 100
